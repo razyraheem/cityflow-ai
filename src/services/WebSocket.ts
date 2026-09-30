@@ -21,14 +21,27 @@ class CityFlowWebSocket {
       return;
     }
 
+    const wsUrl =
+  import.meta.env.VITE_WS_URL ||
+  (() => {
     const protocol =
-      window.location.protocol === "https:" ? "wss:" : "ws:";
+      window.location.protocol === "https:"
+        ? "wss:"
+        : "ws:";
 
-    const host = `${protocol}//${window.location.hostname}:8000/ws`;
+    return `${protocol}//${window.location.hostname}:8000/ws`;
+  })();
 
-    console.log("🔌 Connecting to CITYFLOW WebSocket:", host);
+console.log(
+  "🔌 Connecting to CITYFLOW WebSocket:",
+  wsUrl
+);
 
-    this.socket = new WebSocket(host);
+this.socket = new WebSocket(wsUrl);
+
+    console.log("🔌 Connecting to CITYFLOW WebSocket:", wsUrl);
+
+    this.socket = new WebSocket(wsUrl);
 
     this.socket.onopen = () => {
       console.log("🟢 CITYFLOW WebSocket connected");

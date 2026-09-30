@@ -78,7 +78,7 @@ export const useSimulation = () => {
 };
 
 const EMERGENCY_API_BASE =
-  'http://127.0.0.1:8000/api/emergency';
+  `${import.meta.env.VITE_API_BASE_URL}/api/emergency`;
 
 export const SimulationProvider: React.FC<{
   children: React.ReactNode;
